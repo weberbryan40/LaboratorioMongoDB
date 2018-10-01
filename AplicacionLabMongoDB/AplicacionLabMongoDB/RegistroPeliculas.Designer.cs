@@ -43,12 +43,11 @@
             this.textDirector = new System.Windows.Forms.TextBox();
             this.textFranquicia = new System.Windows.Forms.TextBox();
             this.textPais = new System.Windows.Forms.TextBox();
-            this.textAno = new System.Windows.Forms.TextBox();
             this.textDuracion = new System.Windows.Forms.TextBox();
             this.textCompania = new System.Windows.Forms.TextBox();
             this.textReparto = new System.Windows.Forms.TextBox();
             this.buttonGuardar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tablaConsultas = new System.Windows.Forms.DataGridView();
             this.buttonActualizar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.comboFiltro = new System.Windows.Forms.ComboBox();
@@ -58,7 +57,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.anoFinal = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.anoPeli = new System.Windows.Forms.DateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaConsultas)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -206,13 +206,6 @@
             this.textPais.Size = new System.Drawing.Size(166, 20);
             this.textPais.TabIndex = 14;
             // 
-            // textAno
-            // 
-            this.textAno.Location = new System.Drawing.Point(111, 225);
-            this.textAno.Name = "textAno";
-            this.textAno.Size = new System.Drawing.Size(166, 20);
-            this.textAno.TabIndex = 15;
-            // 
             // textDuracion
             // 
             this.textDuracion.Location = new System.Drawing.Point(111, 258);
@@ -245,14 +238,15 @@
             this.buttonGuardar.TabIndex = 19;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
-            // dataGridView1
+            // tablaConsultas
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(299, 103);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(677, 351);
-            this.dataGridView1.TabIndex = 20;
+            this.tablaConsultas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaConsultas.Location = new System.Drawing.Point(299, 103);
+            this.tablaConsultas.Name = "tablaConsultas";
+            this.tablaConsultas.Size = new System.Drawing.Size(677, 351);
+            this.tablaConsultas.TabIndex = 20;
             // 
             // buttonActualizar
             // 
@@ -349,11 +343,20 @@
             this.anoFinal.Size = new System.Drawing.Size(200, 20);
             this.anoFinal.TabIndex = 29;
             // 
+            // anoPeli
+            // 
+            this.anoPeli.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.anoPeli.Location = new System.Drawing.Point(111, 225);
+            this.anoPeli.Name = "anoPeli";
+            this.anoPeli.Size = new System.Drawing.Size(166, 20);
+            this.anoPeli.TabIndex = 30;
+            // 
             // RegistroPeliculas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Controls.Add(this.anoPeli);
             this.Controls.Add(this.anoFinal);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
@@ -363,12 +366,11 @@
             this.Controls.Add(this.comboFiltro);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.buttonActualizar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.tablaConsultas);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.textReparto);
             this.Controls.Add(this.textCompania);
             this.Controls.Add(this.textDuracion);
-            this.Controls.Add(this.textAno);
             this.Controls.Add(this.textPais);
             this.Controls.Add(this.textFranquicia);
             this.Controls.Add(this.textDirector);
@@ -386,7 +388,8 @@
             this.Controls.Add(this.label1);
             this.Name = "RegistroPeliculas";
             this.Size = new System.Drawing.Size(1000, 470);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.RegistroPeliculas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.tablaConsultas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,12 +412,11 @@
         private System.Windows.Forms.TextBox textDirector;
         private System.Windows.Forms.TextBox textFranquicia;
         private System.Windows.Forms.TextBox textPais;
-        private System.Windows.Forms.TextBox textAno;
         private System.Windows.Forms.TextBox textDuracion;
         private System.Windows.Forms.TextBox textCompania;
         private System.Windows.Forms.TextBox textReparto;
         private System.Windows.Forms.Button buttonGuardar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView tablaConsultas;
         private System.Windows.Forms.Button buttonActualizar;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboFiltro;
@@ -424,5 +426,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DateTimePicker anoFinal;
+        private System.Windows.Forms.DateTimePicker anoPeli;
     }
 }

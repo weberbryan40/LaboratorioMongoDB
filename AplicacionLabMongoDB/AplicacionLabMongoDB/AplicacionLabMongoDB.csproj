@@ -32,6 +32,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\..\..\..\..\..\..\Downloads\Extensiones de mongo\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\..\..\..\..\..\..\Downloads\Extensiones de mongo\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\..\..\..\..\..\..\..\Downloads\Extensiones de mongo\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.GridFS">
+      <HintPath>..\..\..\..\..\..\..\..\Downloads\Extensiones de mongo\net45\MongoDB.Driver.GridFS.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy">
+      <HintPath>..\..\..\..\..\..\..\..\Downloads\Extensiones de mongo\net45\MongoDB.Driver.Legacy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -46,6 +61,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Compania.cs" />
+    <Compile Include="Clases\Pelicula.cs" />
+    <Compile Include="RegistroCompanias.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RegistroCompanias.Designer.cs">
+      <DependentUpon>RegistroCompanias.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +83,9 @@
     <Compile Include="RegistroPeliculas.Designer.cs">
       <DependentUpon>RegistroPeliculas.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistroCompanias.resx">
+      <DependentUpon>RegistroCompanias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
