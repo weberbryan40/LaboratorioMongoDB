@@ -46,8 +46,11 @@
             this.tablaCompanias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaCompanias.Location = new System.Drawing.Point(308, 60);
             this.tablaCompanias.Name = "tablaCompanias";
+            this.tablaCompanias.ReadOnly = true;
+            this.tablaCompanias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaCompanias.Size = new System.Drawing.Size(677, 388);
             this.tablaCompanias.TabIndex = 40;
+            this.tablaCompanias.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tablaCompanias_MouseClick);
             // 
             // textSitio
             // 
@@ -109,6 +112,7 @@
             // 
             // buttonActualizar
             // 
+            this.buttonActualizar.Enabled = false;
             this.buttonActualizar.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonActualizar.Location = new System.Drawing.Point(125, 161);
             this.buttonActualizar.Name = "buttonActualizar";
@@ -116,6 +120,7 @@
             this.buttonActualizar.TabIndex = 42;
             this.buttonActualizar.Text = "Actualizar";
             this.buttonActualizar.UseVisualStyleBackColor = true;
+            this.buttonActualizar.Click += new System.EventHandler(this.buttonActualizar_Click);
             // 
             // buttonGuardar
             // 

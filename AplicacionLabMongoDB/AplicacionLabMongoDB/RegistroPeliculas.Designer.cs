@@ -245,11 +245,15 @@
             this.tablaConsultas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaConsultas.Location = new System.Drawing.Point(299, 103);
             this.tablaConsultas.Name = "tablaConsultas";
+            this.tablaConsultas.ReadOnly = true;
+            this.tablaConsultas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaConsultas.Size = new System.Drawing.Size(677, 351);
             this.tablaConsultas.TabIndex = 20;
+            this.tablaConsultas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tablaConsultas_MouseClick);
             // 
             // buttonActualizar
             // 
+            this.buttonActualizar.Enabled = false;
             this.buttonActualizar.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonActualizar.Location = new System.Drawing.Point(111, 431);
             this.buttonActualizar.Name = "buttonActualizar";
@@ -257,6 +261,7 @@
             this.buttonActualizar.TabIndex = 21;
             this.buttonActualizar.Text = "Actualizar";
             this.buttonActualizar.UseVisualStyleBackColor = true;
+            this.buttonActualizar.Click += new System.EventHandler(this.buttonActualizar_Click);
             // 
             // label11
             // 
