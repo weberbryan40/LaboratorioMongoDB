@@ -16,7 +16,12 @@ namespace AplicacionLabMongoDB
 {
     public partial class RegistroCompanias : UserControl
     {
-        MongoDatabase db = new MongoClient().GetServer().GetDatabase("labMongo");
+        //MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://usermehmet:inno12345@localhost/testDB"));
+        static MongoClientSettings settings = MongoClientSettings.FromConnectionString("mongodb://localhost");
+        static MongoClient mongoClient = new MongoClient(settings);
+        IMongoDatabase db = mongoClient.GetDatabase("labMongo");
+
+        //MongoDatabase db = new MongoClient().GetServer().GetDatabase("labMongo");
         string companiaSeleccionada = "";
 
         public RegistroCompanias()
@@ -35,21 +40,21 @@ namespace AplicacionLabMongoDB
 
         private void cargarCompanias()
         {
-            List<Compania> peliculas = db.GetCollection<Compania>("companias").FindAll().ToList();
-            tablaCompanias.DataSource = peliculas;
+            List<Compania> companias = db.GetCollection<Compania>("companias").Find("{}").ToList();            
+            tablaCompanias.DataSource = companias;
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            Compania peli = new Compania
+            Compania comp = new Compania
             {
                 nombre = textNombre.Text,
                 ano = Int32.Parse(anoCompania.Text),                
                 sitio = textSitio.Text
             };
 
-            MongoCollection companias = db.GetCollection<Compania>("companias");
-            companias.Insert(peli);
+            var companias = db.GetCollection<Compania>("companias");
+            companias.InsertOne(comp);
             cargarCompanias();
 
             textNombre.Text = "";
@@ -82,8 +87,10 @@ namespace AplicacionLabMongoDB
             {
                 if (companiaSeleccionada != "")
                 {
-                    var query = Query.EQ("_id", ObjectId.Parse(companiaSeleccionada));
-                    var compania = db.GetCollection<Compania>("companias").Find(query);
+                    //var query = Query.EQ("_id", ObjectId.Parse(companiaSeleccionada)); 
+                    ObjectId objectId = ObjectId.Parse(companiaSeleccionada);
+                    var filter = Builders<Compania>.Filter.Eq("_id", objectId);
+                    List<Compania> compania = db.GetCollection<Compania>("companias").Find(filter).ToList();
                     foreach (var comp in compania)
                     {
                         textNombre.Text = comp.nombre;                       
@@ -97,10 +104,10 @@ namespace AplicacionLabMongoDB
             else if (e.ClickedItem.Name.ToString() == "Eliminar")
             {
                 if (companiaSeleccionada != "")
-                {
-                    var query = Query.EQ("_id", ObjectId.Parse(companiaSeleccionada));
-                    var companias = db.GetCollection<Compania>("companias");
-                    companias.Remove(query);
+                {                    
+                    var compania = db.GetCollection<Compania>("companias");
+                    ObjectId objectId = ObjectId.Parse(companiaSeleccionada);
+                    compania.DeleteOne((a => a.Id ==objectId));
                     cargarCompanias();
                 }
             }
@@ -122,7 +129,7 @@ namespace AplicacionLabMongoDB
                     }
                 }
             };
-            companias.Update(query, update);
+            companias.UpdateOne(query, update);
             cargarCompanias();
             companiaSeleccionada = "";
             textNombre.Text = "";

@@ -51,7 +51,7 @@
             this.buttonActualizar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.comboFiltro = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textDato = new System.Windows.Forms.TextBox();
             this.anoInicio = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -212,6 +212,7 @@
             this.textDuracion.Name = "textDuracion";
             this.textDuracion.Size = new System.Drawing.Size(166, 20);
             this.textDuracion.TabIndex = 16;
+            this.textDuracion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDuracion_KeyPress);
             // 
             // textCompania
             // 
@@ -278,6 +279,7 @@
             // 
             this.comboFiltro.FormattingEnabled = true;
             this.comboFiltro.Items.AddRange(new object[] {
+            "Todos",
             "Nombre",
             "Franquicia",
             "Año de estreno",
@@ -292,12 +294,13 @@
             this.comboFiltro.TabIndex = 23;
             this.comboFiltro.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // textBox1
+            // textDato
             // 
-            this.textBox1.Location = new System.Drawing.Point(406, 58);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(244, 20);
-            this.textBox1.TabIndex = 24;
+            this.textDato.Location = new System.Drawing.Point(406, 58);
+            this.textDato.Name = "textDato";
+            this.textDato.Size = new System.Drawing.Size(244, 20);
+            this.textDato.TabIndex = 24;
+            this.textDato.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // anoInicio
             // 
@@ -306,6 +309,7 @@
             this.anoInicio.Name = "anoInicio";
             this.anoInicio.Size = new System.Drawing.Size(200, 20);
             this.anoInicio.TabIndex = 25;
+            this.anoInicio.ValueChanged += new System.EventHandler(this.anoInicio_ValueChanged);
             // 
             // label12
             // 
@@ -347,6 +351,7 @@
             this.anoFinal.Name = "anoFinal";
             this.anoFinal.Size = new System.Drawing.Size(200, 20);
             this.anoFinal.TabIndex = 29;
+            this.anoFinal.ValueChanged += new System.EventHandler(this.anoFinal_ValueChanged);
             // 
             // anoPeli
             // 
@@ -367,7 +372,7 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.anoInicio);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textDato);
             this.Controls.Add(this.comboFiltro);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.buttonActualizar);
@@ -425,7 +430,7 @@
         private System.Windows.Forms.Button buttonActualizar;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboFiltro;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textDato;
         private System.Windows.Forms.DateTimePicker anoInicio;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
