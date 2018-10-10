@@ -18,6 +18,6 @@ namespace AplicacionLabMongoDB.Clases
         public int ano { get; set; }
         public int duracion { get; set; }
         public string compania { get; set; }
-        public List<string> reparto { get; set; }
+        public BsonArray reparto { get; set; }
     }
 }

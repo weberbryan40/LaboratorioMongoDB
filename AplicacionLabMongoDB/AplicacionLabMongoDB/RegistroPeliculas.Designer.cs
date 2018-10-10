@@ -44,7 +44,6 @@
             this.textFranquicia = new System.Windows.Forms.TextBox();
             this.textPais = new System.Windows.Forms.TextBox();
             this.textDuracion = new System.Windows.Forms.TextBox();
-            this.textCompania = new System.Windows.Forms.TextBox();
             this.textReparto = new System.Windows.Forms.TextBox();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.tablaConsultas = new System.Windows.Forms.DataGridView();
@@ -58,6 +57,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.anoFinal = new System.Windows.Forms.DateTimePicker();
             this.anoPeli = new System.Windows.Forms.DateTimePicker();
+            this.companiaBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaConsultas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -214,13 +214,6 @@
             this.textDuracion.TabIndex = 16;
             this.textDuracion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textDuracion_KeyPress);
             // 
-            // textCompania
-            // 
-            this.textCompania.Location = new System.Drawing.Point(111, 291);
-            this.textCompania.Name = "textCompania";
-            this.textCompania.Size = new System.Drawing.Size(166, 20);
-            this.textCompania.TabIndex = 17;
-            // 
             // textReparto
             // 
             this.textReparto.Location = new System.Drawing.Point(111, 324);
@@ -361,11 +354,21 @@
             this.anoPeli.Size = new System.Drawing.Size(166, 20);
             this.anoPeli.TabIndex = 30;
             // 
+            // companiaBox
+            // 
+            this.companiaBox.FormattingEnabled = true;
+            this.companiaBox.Location = new System.Drawing.Point(111, 291);
+            this.companiaBox.Name = "companiaBox";
+            this.companiaBox.Size = new System.Drawing.Size(166, 21);
+            this.companiaBox.TabIndex = 31;
+            this.companiaBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.companiaBox_MouseClick);
+            // 
             // RegistroPeliculas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Controls.Add(this.companiaBox);
             this.Controls.Add(this.anoPeli);
             this.Controls.Add(this.anoFinal);
             this.Controls.Add(this.label14);
@@ -379,7 +382,6 @@
             this.Controls.Add(this.tablaConsultas);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.textReparto);
-            this.Controls.Add(this.textCompania);
             this.Controls.Add(this.textDuracion);
             this.Controls.Add(this.textPais);
             this.Controls.Add(this.textFranquicia);
@@ -423,7 +425,6 @@
         private System.Windows.Forms.TextBox textFranquicia;
         private System.Windows.Forms.TextBox textPais;
         private System.Windows.Forms.TextBox textDuracion;
-        private System.Windows.Forms.TextBox textCompania;
         private System.Windows.Forms.TextBox textReparto;
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.DataGridView tablaConsultas;
@@ -437,5 +438,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DateTimePicker anoFinal;
         private System.Windows.Forms.DateTimePicker anoPeli;
+        private System.Windows.Forms.ComboBox companiaBox;
     }
 }

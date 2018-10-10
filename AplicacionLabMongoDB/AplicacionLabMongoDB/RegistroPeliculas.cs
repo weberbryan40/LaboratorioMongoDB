@@ -78,12 +78,14 @@ namespace AplicacionLabMongoDB
         {
             cargarPeliculas();
             tablaConsultas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            comboFiltro.SelectedIndex = 0;
+            comboFiltro.SelectedIndex = 0;            
         }
 
         private void cargarPeliculas() {
             List<Pelicula> peliculas = db.GetCollection<Pelicula>("peliculas").Find("{}").ToList();
+            Debug.Print(peliculas.Last().reparto[0].ToString());
             tablaConsultas.DataSource = peliculas;
+            tablaConsultas.Columns["Id"].Visible = false;
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
@@ -99,11 +101,11 @@ namespace AplicacionLabMongoDB
                 pais = textPais.Text,
                 ano = Int32.Parse(anoPeli.Text),
                 duracion = dura,
-                compania = textCompania.Text               
+                compania = companiaBox.Text               
             };
             string[] listaReparto = textReparto.Text.Split(new[] { "\r\n", "\r", "\n" },
                 StringSplitOptions.None);
-            peli.reparto = listaReparto.ToList();
+            peli.reparto = new BsonArray(listaReparto.ToList());
             var peliculas = db.GetCollection<Pelicula>("peliculas");
             peliculas.InsertOne(peli);
             cargarPeliculas();
@@ -147,9 +149,9 @@ namespace AplicacionLabMongoDB
                         textFranquicia.Text = peli.franquicia;
                         textPais.Text = peli.pais;
                         textDuracion.Text = peli.duracion.ToString();
-                        textCompania.Text = peli.compania;
+                        companiaBox.Text = peli.compania;
                         anoPeli.Value = new DateTime(peli.ano, 01, 01);
-                        List<String> reparto = peli.reparto;
+                        BsonArray reparto = peli.reparto;
                         string stringReparto = "";
                         foreach (string actor in reparto) {
                             stringReparto += actor + "\r\n";
@@ -176,6 +178,7 @@ namespace AplicacionLabMongoDB
             var query = new QueryDocument {
                 {"_id",ObjectId.Parse(peliculaSeleccionada) }
             };
+           
             var update = new UpdateDocument
             {
                 {"$set", new BsonDocument                
@@ -187,7 +190,8 @@ namespace AplicacionLabMongoDB
                         { "pais",  textPais.Text },
                         { "ano" , Int32.Parse(anoPeli.Text) },
                         { "duracion" , Int32.Parse(textDuracion.Text) },
-                        { "compania" , textCompania.Text }                       
+                        { "compania" , companiaBox.Text },
+                        { "reparto" , new BsonArray(obtenerListaActores())}
                     }                    
                 } 
             };
@@ -198,6 +202,13 @@ namespace AplicacionLabMongoDB
             buttonGuardar.Enabled = true;
             buttonActualizar.Enabled = false;
 
+        }
+
+        private List<string> obtenerListaActores()
+        {
+            string[] listaReparto = textReparto.Text.Split(new[] { "\r\n", "\r", "\n" },
+                 StringSplitOptions.None);
+            return listaReparto.ToList();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -241,7 +252,7 @@ namespace AplicacionLabMongoDB
                     break;
                 case "franquiciaPelicula":
                     FilterDefinition<Pelicula> filter2 = "{ franquicia : { $regex : \"" + dato.ToString() + "\" } }";
-                    var list2 = peliculas.Find(filter2);
+                    var list2 = peliculas.Find(filter2).ToList();
                     tablaConsultas.DataSource = list2;
                     break;
                 case "rangoAno":
@@ -293,7 +304,7 @@ namespace AplicacionLabMongoDB
             textFranquicia.Text = "";
             textPais.Text = "";
             textDuracion.Text = "";
-            textCompania.Text = "";
+            companiaBox.Text = "";
             textReparto.Text = "";
         }
 
@@ -316,6 +327,16 @@ namespace AplicacionLabMongoDB
         private void textDuracion_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void companiaBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            List<Compania> companias = db.GetCollection<Compania>("companias").Find("{}").ToList();
+            companiaBox.Items.Clear();
+            foreach (var compa in companias)
+            {
+                companiaBox.Items.Add(compa.nombre);
+            }
         }
     }
 }
